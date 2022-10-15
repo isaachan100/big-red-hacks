@@ -1,5 +1,5 @@
 import java.util.*;
-public class Grocery implements Comparable{
+public class Grocery{
 
     private String name;
     private ArrayList<Product> products;
@@ -56,8 +56,13 @@ public class Grocery implements Comparable{
         }
         return true;
     }
-    @Override
-    public int compareTo(Object o) {
-        return 0;
+
+    private double storeScore(List<String> groceryList) {
+        for (String product : groceryList) {
+            List<Product> products = search(product);
+            products.sort();
+
+        }
+        return 0.0;
     }
 }
