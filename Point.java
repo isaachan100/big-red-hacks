@@ -17,12 +17,19 @@ public class Point{
         return y;
     }
 
-    public int compareTo(Point a) {
-        return 0;
+    public double distanceTo(Point a) {
+        final int R = 6371;
+        double latDistance = Math.toRadians(a.getLat() - x);
+        double lonDistance = Math.toRadians(a.getLon() - y);
+        double b = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(x)) * Math.cos(Math.toRadians(a.getLat()))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(b), Math.sqrt(1 - b));
+        return R * c * 1000;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return false;
+    public String toString() {
+        return "("+x+","+y+")";
     }
 }
