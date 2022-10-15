@@ -12,9 +12,15 @@ public class User {
     /** list of previous transaction data */
     private List<Product> transactions;
 
+    /**
+     * User location
+     */
+    private Point loc;
+
     /** creates a user with username name and default preferences (weighted toward green) */
     public User (String name) {
         username = name;
+        loc = new Point();
         preferences = new ArrayList<>();
         preferences.add(0.3);
         preferences.add(0.3);
@@ -27,6 +33,15 @@ public class User {
     public String username() {
         return username;
     }
+
+    public Point getLoc(){
+        return loc;
+    }
+
+    public void setLoc(Point a){
+        loc = a;
+    }
+
 
     /** returns a list of preferences, where the first index corresponds to transportation
      * score, second index corresponds to how it was made, third index corresponds to cost,

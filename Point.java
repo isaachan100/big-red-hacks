@@ -4,6 +4,10 @@ public class Point{
     private double x;
     private double y;
 
+    public Point(){
+        x = 0;
+        y = 0;
+    }
     public Point(double lat, double lon){
         x = lat;
         y = lon;
