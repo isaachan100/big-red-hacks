@@ -17,4 +17,7 @@ public class Grocery {
         return location;
     }
 
+    public ArrayList<Product> search(String a){
+        return products;
+    }
 }
