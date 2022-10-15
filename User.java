@@ -46,7 +46,7 @@ public class User {
     /** adds a transaction of purchases to the list of transactions and updates preferences
      * based on the new purchase
      */
-    public void createTransaction(Product purchase, double averageCost) {
+    public void addTransaction(Product purchase, double averageCost) {
         transactions.add(purchase);
         List<Double> scores = purchase.scores(averageCost);
         for (int i = 0; i < 4; i++) {
