@@ -6,11 +6,11 @@ public class Main {
     }
 
     public Grocery bestStore(){
-
+        return null;
     }
 
     public ArrayList<Grocery> closeStores(){
-        
+        return null;
     }
 
 

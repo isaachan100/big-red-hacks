@@ -49,31 +49,34 @@ public class Grocery{
             productName.put(s.toLowerCase(), 0);
         }
 
-        System.out.println(keywords);
-        System.out.println(productName.keySet());
+
         for (String keyword : keywords) {
             if (!productName.containsKey(keyword)) return false;
         }
         return true;
     }
 
-    public double storeScore(List<String> groceryList, User u, double averageCost) {
+    public double storeScore(List<String> groceryList, User u, List<Double> costs) {
         double totalAverage = 0;
-        for (String product : groceryList) {
+        for (int i = 0; i < groceryList.size(); i++) {
+            String product = groceryList.get(i);
             double weightedAverage = 0;
             List<Product> products = search(product);
             Map<Double, Product> sortedProducts = new TreeMap<>();
             for (Product p : products) {
-                sortedProducts.put(p.calculateScore(u, averageCost), p);
+                sortedProducts.put(p.calculateScore(u, costs.get(i)), p);
             }
-            int i = 1;
-            double total = (1.0 + i)*(sortedProducts.size())/2;
+            int index = 1;
+            double total = (1.0 + index)*(sortedProducts.size())/2;
             for (double k : sortedProducts.keySet()) {
                 Product p = sortedProducts.get(k);
-                weightedAverage += k * i / total;
+                weightedAverage += k * index / total;
             }
+            weightedAverage = Math.round(weightedAverage * 100.0)/100.0;
             totalAverage += weightedAverage;
+            System.out.println(weightedAverage);
         }
-        return totalAverage;
+        System.out.println(totalAverage);
+        return totalAverage / groceryList.size();
     }
 }
