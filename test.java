@@ -1,5 +1,5 @@
 public class test {
-    void test() {
-
+    int test(int x) {
+        return x;
     }
 }
