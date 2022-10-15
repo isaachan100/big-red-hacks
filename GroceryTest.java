@@ -28,4 +28,15 @@ class GroceryTest {
         assertEquals(1, Walmart.search("chobani greek yogurt").size());
         assertEquals(0, Walmart.search("blueberry yogurt").size());
     }
+
+    void testStoreScore() {
+        Product apple = new Product("apple", 1829.0, "plane", 3.90, true, false);
+        Product banana = new Product("banana", 1569.0, "train", .25, true, true);
+        Product fijiApple = new Product("fiji apple", 1281.0, "ship", 4.30,
+                false, false);
+        Product honeyCrispApple = new Product("honey crisp apple", 1281.0, "ship", 4.30,
+                false, false);
+        Product greekYogurt = new Product("Chobani Greek Yogurt", 550.0, "ship",
+                4.30, false, false);
+    }
 }

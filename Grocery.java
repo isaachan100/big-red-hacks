@@ -57,12 +57,23 @@ public class Grocery{
         return true;
     }
 
-    private double storeScore(List<String> groceryList) {
+    public double storeScore(List<String> groceryList, User u, double averageCost) {
+        double totalAverage = 0;
         for (String product : groceryList) {
+            double weightedAverage = 0;
             List<Product> products = search(product);
-            products.sort();
-
+            Map<Double, Product> sortedProducts = new TreeMap<>();
+            for (Product p : products) {
+                sortedProducts.put(p.calculateScore(u, averageCost), p);
+            }
+            int i = 1;
+            double total = (1.0 + i)*(sortedProducts.size())/2;
+            for (double k : sortedProducts.keySet()) {
+                Product p = sortedProducts.get(k);
+                weightedAverage += k * i / total;
+            }
+            totalAverage += weightedAverage;
         }
-        return 0.0;
+        return totalAverage;
     }
 }
