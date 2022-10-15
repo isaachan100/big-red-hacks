@@ -5,6 +5,11 @@ public class Grocery {
     private ArrayList<Product> products;
     private Point location;
 
+    public Grocery(String name, Point location){
+        this.name = name;
+        this.location = location;
+    }
+
     public String getName(){
         return name;
     }
@@ -17,7 +22,12 @@ public class Grocery {
         return location;
     }
 
+    public void addProduct(Product a){
+        products.add(a);
+    }
+
     public ArrayList<Product> search(String a){
         return products;
     }
+    
 }
