@@ -16,16 +16,16 @@ public class Product {
     public Product(String n, double d, String s, double p, boolean o, boolean c) {
         name = n;
         distance = d;
-        if(s.equals("plane")) shipping = 1.0;
-        else if(s.equals("ship")) shipping = 3.0;
-        else if(s.equals("truck")) shipping = 5.0;
-        else shipping = 8.0; //train
+        if(s.equals("plane")) shipping = 0.5;
+        else if(s.equals("ship")) shipping = 1.5;
+        else if(s.equals("truck")) shipping = 2.5;
+        else shipping = 4.0; //train
         price = p;
         organic = o;
         carbon = c;
     }
     private double shippingScore() {
-        double trans = (shipping * distance) / 1500;
+        double trans = (shipping * distance) / 750;
         if (trans > 10.0) {
             trans = 10.0;
         }
