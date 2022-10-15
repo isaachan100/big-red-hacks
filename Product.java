@@ -3,18 +3,17 @@ import java.util.*;
 public class Product {
     private String name;
     // product origin distance from store
-    private int distance;
+    private double distance;
     // converts shipping method to a score 1-10 based on environmental impact
     private double shipping;
     private double price;
-    // average of customer ratings of the product, 1-5 stars
-    private double rating;
+
     // true if organic, false if not
     private boolean organic;
 
     // carbon-intensive growth methods, true if carbon-intensive false if not
     private boolean carbon;
-    public Product(String n, int d, String s, double p, double r, boolean o, boolean c) {
+    public Product(String n, double d, String s, double p, boolean o, boolean c) {
         name = n;
         distance = d;
         if(s.equals("plane")) shipping = 1.0;
@@ -22,7 +21,6 @@ public class Product {
         else if(s.equals("truck")) shipping = 5.0;
         else shipping = 8.0; //train
         price = p;
-        rating = r;
         organic = o;
         carbon = c;
     }
@@ -31,12 +29,12 @@ public class Product {
         if (trans > 10.0) {
             trans = 10.0;
         }
-        return trans;
+        return Math.round(trans * 100.0) / 100.0;
     }
     public String getName() {
         return name;
     }
-    public int getDistance() {
+    public double getDistance() {
         return distance;
     }
     public double getShipping() {
@@ -45,19 +43,21 @@ public class Product {
     public double getPrice() {
         return price;
     }
-    public double getRating() {
-        return rating;
-    }
     public boolean getOrganic() {
         return organic;
     }
-    public boolean carbon() {
+    public boolean getCarbon() {
         return carbon;
     }
 
     private double relativeCost(double averageCost) {
         double percentError = Math.abs((price - averageCost)/averageCost);
-        return percentError * 10;
+        if (price > averageCost) {
+            return 5.0 - Math.round((percentError * 10)*100.0)/100.0;
+        }
+        else {
+            return 10.0 - Math.round((percentError * 10)*100.0)/100.0;
+        }
     }
 
     /**
