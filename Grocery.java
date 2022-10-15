@@ -1,5 +1,5 @@
 import java.util.*;
-public class Grocery {
+public class Grocery implements Comparable{
 
     private String name;
     private ArrayList<Product> products;
@@ -56,4 +56,12 @@ public class Grocery {
         }
         return true;
     }
+<<<<<<< Updated upstream
+=======
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
+>>>>>>> Stashed changes
 }

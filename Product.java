@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Product {
+public class Product implements Comparable{
     private String name;
     // product origin distance from store
     private double distance;
@@ -90,5 +90,10 @@ public class Product {
             score += weights.get(i) * productScores.get(i);
         }
         return Math.round(score * 100.0)/100.0;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
