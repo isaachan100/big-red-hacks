@@ -8,6 +8,7 @@ public class Grocery {
     public Grocery(String name, Point location){
         this.name = name;
         this.location = location;
+        products = new ArrayList<Product>();
     }
 
     public String getName(){
@@ -29,5 +30,5 @@ public class Grocery {
     public ArrayList<Product> search(String a){
         return products;
     }
-    
+
 }
