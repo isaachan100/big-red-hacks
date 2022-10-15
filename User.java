@@ -2,7 +2,7 @@ import java.util.*;
 public class User {
 
     /** list of integers for each user's preferences */
-    private Map<String, Double> preferences;
+    private List<Double> preferences;
 
     /** String containing the username of the user
      * requires: username cannot be empty
@@ -15,11 +15,11 @@ public class User {
     /** creates a user with username name and default preferences (weighted toward green) */
     public User (String name) {
         username = name;
-        preferences = new HashMap<>();
-        preferences.put("Transportation", 0.3);
-        preferences.put("Creation", 0.3);
-        preferences.put("Cost", 0.2);
-        preferences.put("Organic", 0.2);
+        preferences = new ArrayList<>();
+        preferences.add(0.3);
+        preferences.add(0.3);
+        preferences.add(0.2);
+        preferences.add(0.2);
         transactions = new ArrayList<Product>();
     }
 
@@ -35,10 +35,10 @@ public class User {
     public List<Double> preferences() {
         List<Double> userPreferences = new ArrayList<>();
 
-        userPreferences.add(preferences.get("Transportation"));
-        userPreferences.add(preferences.get("Creation"));
-        userPreferences.add(preferences.get("Cost"));
-        userPreferences.add(preferences.get("Organic"));
+        userPreferences.add(preferences.get(0));
+        userPreferences.add(preferences.get(1));
+        userPreferences.add(preferences.get(2));
+        userPreferences.add(preferences.get(3));
 
         return userPreferences;
     }
@@ -46,8 +46,14 @@ public class User {
     /** adds a transaction of purchases to the list of transactions and updates preferences
      * based on the new purchase
      */
-    public void createTransaction(Product purchase) {
+    public void createTransaction(Product purchase, double averageCost) {
         transactions.add(purchase);
-
+        List<Double> scores = purchase.scores(averageCost);
+        for (int i = 0; i < 4; i++) {
+            double currentPreference = preferences.get(i);
+            double change = scores.get(i) - currentPreference;
+            currentPreference += change;
+            preferences.set(i, currentPreference);
+        }
     }
 }
