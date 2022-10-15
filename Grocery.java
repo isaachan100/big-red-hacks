@@ -27,13 +27,32 @@ public class Grocery {
         products.add(a);
     }
 
-    public ArrayList<Product> search(String a){
-        return products;
+    public List<Product> search(String search){
+        List<Product> matchingProducts = new ArrayList<Product>();
+        for (Product p : products) {
+            if (containsProduct(p, search)) matchingProducts.add(p);
+        }
+        return matchingProducts;
     }
 
     /** helper method that returns true if a product matches a search */
-    private boolean containsProduct(Product p, ) {
+    private boolean containsProduct(Product p, String search) {
+        String[] split = search.split(" ");
+        List<String> keywords = new ArrayList<String>();
+        for (String s : split) {
+            keywords.add(s);
+        }
 
+        String[] productSplit = p.getName().split(" ");
+        List<String> productName = new ArrayList<String>();
+        for (String s : productSplit) {
+            productName.add(s);
+        }
+
+        for (String keyword : keywords) {
+            if (!productName.contains(keyword)) return false;
+        }
+        return true;
     }
 
 }
