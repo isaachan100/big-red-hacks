@@ -15,21 +15,39 @@ public class Product {
         name = n;
         distance = d;
         if(s.equals("plane")) shipping = 1;
-        if(s.equals("ship")) shipping = 3;
-        if(s.equals("truck")) shipping = 5;
-        if(s.equals("train")) shipping = 8;
+        else if(s.equals("ship")) shipping = 3;
+        else if(s.equals("truck")) shipping = 5;
+        else if(s.equals("train")) shipping = 8;
         price = p;
         rating = r;
         organic = o;
 
     }
     public double score() {
-        int trans = shipping * distance;
+        double trans = (double)shipping * distance /5;
 
 
-        return 0;
+        return (price*100)-trans+rating+organic+creation;
     }
     public String getName() {
         return name;
+    }
+    public int getDistance() {
+        return distance;
+    }
+    public int getShipping() {
+        return shipping;
+    }
+    public double getPrice() {
+        return price;
+    }
+    public double getRating()() {
+        return rating;
+    }
+    public boolean getOrganic() {
+        return organic;
+    }
+    public int getCreation() {
+        return creation;
     }
 }
