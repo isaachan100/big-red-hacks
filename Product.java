@@ -79,4 +79,16 @@ public class Product {
 
         return scores;
     }
+
+    /** returns score based on the user's preferences
+     */
+    public double calculateScore(User u, double averageCost) {
+        double score = 0;
+        List<Double> weights = u.preferences();
+        List<Double> productScores = this.scores(averageCost);
+        for (int i = 0; i < 4; i++) {
+            score += weights.get(i) * productScores.get(i);
+        }
+        return Math.round(score * 100.0)/100.0;
+    }
 }
