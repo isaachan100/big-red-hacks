@@ -5,11 +5,13 @@ public class Product {
     // converts shipping method to a score 1-10 based on environmental impact
     private int shipping;
     private double price;
+    // average of customer ratings of the product, 1-5 stars
+    private double rating;
     // 1 if organic, 0 if not
     private boolean organic;
     // how the product was made, factoring in number of ingredients/growth method
     private int creation;
-    public Product(String n, int d, String s, double p, boolean o) {
+    public Product(String n, int d, String s, double p, double r, boolean o) {
         name = n;
         distance = d;
         if(s.equals("plane")) shipping = 1;
@@ -17,6 +19,7 @@ public class Product {
         if(s.equals("truck")) shipping = 5;
         if(s.equals("train")) shipping = 8;
         price = p;
+        rating = r;
         organic = o;
 
     }
