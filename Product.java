@@ -20,8 +20,7 @@ public class Product {
         price = p;
         quality = q;
         organic = o;
-        if ()
-            creation =
+        
     }
     public double score() {
 
