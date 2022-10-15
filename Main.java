@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        ArrayList<Grocery> storeList = new ArrayList<>();
 
     }
 
@@ -12,6 +13,8 @@ public class Main {
     public ArrayList<Grocery> closeStores(){
         return null;
     }
+
+
 
 
 
