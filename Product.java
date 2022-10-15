@@ -5,35 +5,33 @@ public class Product {
     // product origin distance from store
     private int distance;
     // converts shipping method to a score 1-10 based on environmental impact
-    private int shipping;
+    private double shipping;
     private double price;
     // average of customer ratings of the product, 1-5 stars
     private double rating;
     // true if organic, false if not
     private boolean organic;
-    // how the product was made, factoring in number of ingredient
-    private int creation;
+
     // carbon-intensive growth methods, true if carbon-intensive false if not
     private boolean carbon;
     public Product(String n, int d, String s, double p, double r, boolean o, boolean c) {
         name = n;
         distance = d;
-        if(s.equals("plane")) shipping = 1;
-        else if(s.equals("ship")) shipping = 3;
-        else if(s.equals("truck")) shipping = 5;
-        else shipping = 8; //train
+        if(s.equals("plane")) shipping = 1.0;
+        else if(s.equals("ship")) shipping = 3.0;
+        else if(s.equals("truck")) shipping = 5.0;
+        else shipping = 8.0; //train
         price = p;
         rating = r;
         organic = o;
         carbon = c;
-        creation = 0; //fix
     }
-    public double score() {
-        double trans = (double)shipping * distance /5;
-
-
-        // return (price*100)-trans+rating+organic+creation;
-        return 0;
+    private double shippingScore() {
+        double trans = (shipping * distance) / 1500;
+        if (trans > 10.0) {
+            trans = 10.0;
+        }
+        return trans;
     }
     public String getName() {
         return name;
@@ -41,7 +39,7 @@ public class Product {
     public int getDistance() {
         return distance;
     }
-    public int getShipping() {
+    public double getShipping() {
         return shipping;
     }
     public double getPrice() {
@@ -53,12 +51,32 @@ public class Product {
     public boolean getOrganic() {
         return organic;
     }
-    public int getCreation() {
-        return creation;
+    public boolean carbon() {
+        return carbon;
     }
 
-    public List<Integer> scores() {
-        List<Integer> scores = new ArrayList<Integer>();
+    private double relativeCost(double averageCost) {
+        double percentError = Math.abs((price - averageCost)/averageCost);
+        return percentError * 10;
+    }
+
+    /**
+     *
+     * @return a list of scores, first index is transportation score, second index is carbon
+     * score, third index is cost, fourth index is organic
+     */
+    public List<Double> scores(double averageCost) {
+        List<Double> scores = new ArrayList<Double>();
+        scores.add(this.shippingScore());
+
+        if (carbon) scores.add(10.0);
+        else scores.add(0.0);
+
+        scores.add(this.relativeCost(averageCost));
+
+        if (organic) scores.add(10.0);
+        else scores.add(0.0);
+
         return scores;
     }
 }
