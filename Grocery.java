@@ -56,12 +56,8 @@ public class Grocery implements Comparable{
         }
         return true;
     }
-<<<<<<< Updated upstream
-=======
-
     @Override
     public int compareTo(Object o) {
         return 0;
     }
->>>>>>> Stashed changes
 }
