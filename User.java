@@ -51,7 +51,7 @@ public class User {
         List<Double> scores = purchase.scores(averageCost);
         for (int i = 0; i < 4; i++) {
             double currentPreference = preferences.get(i);
-            double change = scores.get(i) - currentPreference;
+            double change = (scores.get(i) - currentPreference) * 0.1;
             currentPreference += change;
             preferences.set(i, currentPreference);
         }

@@ -31,4 +31,9 @@ public class Grocery {
         return products;
     }
 
+    /** helper method that returns true if a product matches a search */
+    private boolean containsProduct(Product p, ) {
+
+    }
+
 }
