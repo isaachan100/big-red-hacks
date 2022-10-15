@@ -40,17 +40,17 @@ public class Grocery {
         String[] split = search.split(" ");
         List<String> keywords = new ArrayList<String>();
         for (String s : split) {
-            keywords.add(s);
+            keywords.add(s.toLowerCase());
         }
 
         String[] productSplit = p.getName().split(" ");
-        List<String> productName = new ArrayList<String>();
+        HashMap<String, Integer> productName = new HashMap<String, Integer>();
         for (String s : productSplit) {
-            productName.add(s);
+            productName.put(s.toLowerCase(), 0);
         }
 
         for (String keyword : keywords) {
-            if (!productName.contains(keyword)) return false;
+            if (!productName.containsKey(keyword)) return false;
         }
         return true;
     }
