@@ -9,6 +9,9 @@ public class User {
      */
     private String username;
 
+    /** list of previous transaction data */
+    private List<List<Integer>> transactions;
+
     /** creates a user with username name and default preferences (weighted toward green) */
     public User (String name) {
         username = name;
@@ -17,6 +20,7 @@ public class User {
         preferences.put("Creation", 0.3);
         preferences.put("Cost", 0.2);
         preferences.put("Organic", 0.2);
+        transactions = new ArrayList<List<Integer>>();
     }
 
     /** returns the username of the person */
@@ -26,7 +30,7 @@ public class User {
 
     /** returns a list of preferences, where the first index corresponds to transportation
      * score, second index corresponds to how it was made, third index corresponds to cost,
-     * fourth index corresponds to quality, fifth index corresponds to organic
+     * fourth index corresponds to organic
      */
     public List<Double> preferences() {
         List<Double> userPreferences = new ArrayList<>();
@@ -39,4 +43,9 @@ public class User {
         return userPreferences;
     }
 
+    /** adds a transaction to the database
+     */
+    public void createTransaction() {
+
+    }
 }

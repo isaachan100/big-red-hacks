@@ -30,7 +30,8 @@ public class Product {
         double trans = (double)shipping * distance /5;
 
 
-        return (price*100)-trans+rating+organic+creation;
+        // return (price*100)-trans+rating+organic+creation;
+        return 0;
     }
     public String getName() {
         return name;
@@ -44,7 +45,7 @@ public class Product {
     public double getPrice() {
         return price;
     }
-    public double getRating()() {
+    public double getRating() {
         return rating;
     }
     public boolean getOrganic() {
