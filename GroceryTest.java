@@ -60,6 +60,6 @@ class GroceryTest {
         costs.add(1.25);
         costs.add(4.0);
 
-        Walmart.storeScore(groceries, u, costs);
+        assertEquals(5.28, Walmart.storeScore(groceries, u, costs));
     }
 }

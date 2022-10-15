@@ -62,21 +62,18 @@ public class Grocery{
             String product = groceryList.get(i);
             double weightedAverage = 0;
             List<Product> products = search(product);
-            Map<Double, Product> sortedProducts = new TreeMap<>();
+            List<Double> sortedProducts = new ArrayList<>();
             for (Product p : products) {
-                sortedProducts.put(p.calculateScore(u, costs.get(i)), p);
+                sortedProducts.add(p.calculateScore(u, costs.get(i)));
             }
-            int index = 1;
-            double total = (1.0 + index)*(sortedProducts.size())/2;
-            for (double k : sortedProducts.keySet()) {
-                Product p = sortedProducts.get(k);
-                weightedAverage += k * index / total;
+            Collections.sort(sortedProducts);
+            double total = (sortedProducts.size() + 1) * (sortedProducts.size()) / 2.0;
+            for (int j = 0; j < sortedProducts.size(); j++) {
+                weightedAverage += sortedProducts.get(j) * (j + 1) / (total);
             }
             weightedAverage = Math.round(weightedAverage * 100.0)/100.0;
             totalAverage += weightedAverage;
-            System.out.println(weightedAverage);
         }
-        System.out.println(totalAverage);
         return totalAverage / groceryList.size();
     }
 }
