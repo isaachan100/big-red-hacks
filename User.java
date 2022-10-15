@@ -10,7 +10,7 @@ public class User {
     private String username;
 
     /** list of previous transaction data */
-    private List<List<Integer>> transactions;
+    private List<Product> transactions;
 
     /** creates a user with username name and default preferences (weighted toward green) */
     public User (String name) {
@@ -20,7 +20,7 @@ public class User {
         preferences.put("Creation", 0.3);
         preferences.put("Cost", 0.2);
         preferences.put("Organic", 0.2);
-        transactions = new ArrayList<List<Integer>>();
+        transactions = new ArrayList<Product>();
     }
 
     /** returns the username of the person */
@@ -43,9 +43,11 @@ public class User {
         return userPreferences;
     }
 
-    /** adds a transaction to the database
+    /** adds a transaction of purchases to the list of transactions and updates preferences
+     * based on the new purchase
      */
-    public void createTransaction() {
+    public void createTransaction(Product purchase) {
+        transactions.add(purchase);
 
     }
 }

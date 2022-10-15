@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Product {
     private String name;
     // product origin distance from store
@@ -53,5 +55,10 @@ public class Product {
     }
     public int getCreation() {
         return creation;
+    }
+
+    public List<Integer> scores() {
+        List<Integer> scores = new ArrayList<Integer>();
+        return scores;
     }
 }
