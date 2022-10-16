@@ -90,7 +90,7 @@ public class Main {
             ranking.put(store.storeScore(products, u, costs), returnedStore);
         }
         for (Map.Entry<Double, Grocery> entry : ranking.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
+            System.out.println(entry.getValue().getName() + ": " + entry.getValue().getProducts());
         }
     }
 
