@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-import java.nio.file.DirectoryIteratorException;
 import java.util.*;
 import java.io.*;
 
@@ -9,15 +7,19 @@ public class Main {
         storeList.add(readStoreData("Walmart Demo Data.csv"));
         storeList.add(readStoreData("Costco Demo Data.csv"));
         storeList.add(readStoreData("Target Demo Data.csv"));
+        User u = new User("Ethan");
+        ArrayList<Grocery> closestStores = bestStores(storeList, u);
+        //command line input for array of products to search
 
+        printSuggestions(closestStores, args, u);
     }
 
-    public ArrayList<Grocery> bestStores(ArrayList<Grocery> storeList, User u){
+    public static ArrayList<Grocery> bestStores(ArrayList<Grocery> storeList, User u){
         TreeMap<Double, Grocery> groceryTreeMap = closeStores(storeList, u);
         ArrayList<Grocery> fiveBest = new ArrayList<>();
         int i = 0;
         for(Grocery a : groceryTreeMap.values()){
-            if(i>=5) break;
+            if(i>=2) break;
             fiveBest.add(a);
             i++;
         }
@@ -27,7 +29,6 @@ public class Main {
     public static Grocery readStoreData(String name) {
         try(Reader r = new FileReader(name); BufferedReader br = new BufferedReader(r)) {
             String line = br.readLine();
-            ArrayList<Grocery> storeList = new ArrayList<>();
             String[] a = line.split(",", Integer.MAX_VALUE);
             Point b = new Point(Double.parseDouble(a[1]), Double.parseDouble(a[2]));
             Grocery store = new Grocery(a[0], b);
@@ -48,7 +49,7 @@ public class Main {
         return null;
     }
 
-    public TreeMap<Double, Grocery> closeStores(ArrayList<Grocery> storeList, User u){
+    public static TreeMap<Double, Grocery> closeStores(ArrayList<Grocery> storeList, User u){
         TreeMap<Double, Grocery> groceryTreeMap = new TreeMap<>();
         double x = u.getLoc().getLat();
         double y = u.getLoc().getLon();
@@ -59,9 +60,16 @@ public class Main {
         return groceryTreeMap;
     }
 
-
-
-
+    public static void printSuggestions(ArrayList<Grocery> storeList, String [] products, User u){
+        for(Grocery store: storeList){
+            for(String product: products){
+                store.search(product);
+            }
+        }
+        for (Map.Entry<K, V> entry : myMap.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
+        }
+    }
 
     //gather relevant products (call to Grocery) -> ArrayList<Product> might not even need this one
     // accept list of search and send to each grocer (for each loop) ->
