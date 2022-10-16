@@ -56,6 +56,11 @@ public class Grocery{
         return true;
     }
 
+    public Product bestProduct(String productName, User u, double AverageCost) {
+        Product p = new Product("a", 1.0, "b", 1.0, false, false);
+        return p;
+    }
+
     public double storeScore(List<String> groceryList, User u, List<Double> costs) {
         double totalAverage = 0;
         for (int i = 0; i < groceryList.size(); i++) {

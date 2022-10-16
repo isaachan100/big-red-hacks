@@ -9,9 +9,23 @@ public class Main {
         storeList.add(readStoreData("Target Demo Data.csv"));
         User u = new User("Ethan");
         ArrayList<Grocery> closestStores = bestStores(storeList, u);
+        Map<String, Double> averageCost = new TreeMap<>();
+        averageCost.put("apple", 1.29);
+        averageCost.put("yogurt", 2.33);
+        averageCost.put("cereal", 3.27);
+        averageCost.put("ice cream", 5.52);
+        Map<String, Grocery> stores = new TreeMap<>();
+        stores.put("Walmart", storeList.get(0));
+        stores.put("Costco", storeList.get(1));
+        stores.put("Target", storeList.get(2));
         //command line input for array of products to search
 
         printSuggestions(closestStores, args, u);
+        makeTransactions("Transactions Demo Data.csv", u, averageCost,
+                new Scanner(System.in), stores);
+
+
+
     }
 
     public static ArrayList<Grocery> bestStores(ArrayList<Grocery> storeList, User u){
@@ -76,6 +90,30 @@ public class Main {
     //adds confirmed purchase to each user class -> void
     // creates a tree map to sort products by score -> treemap
 
+    public static void makeTransactions(String fileName, User u, Map<String, Double>
+            averageCost, Scanner sc, Map<String, Grocery> stores) {
+        try (Reader r = new FileReader(fileName); BufferedReader br = new BufferedReader(r)) {
+            while (true) {
+                System.out.println("Make transactions: ");
+                String input = sc.nextLine().trim();
+                String [] words = input.split(" ");
+                if (words.length > 0) {
+                    break;
+                }
+            }
+            String line = br.readLine();
+            while (line != null) {
+                String[] transaction = line.split(" ");
+                Grocery g = stores.get(transaction[1]);
+                List<Product> products = g.search(transaction[0]);
+                for (Product p : products) {
+                    u.addTransaction(p, averageCost.get(transaction[2]));
+                }
+            }
+        }
+        catch (IOException e) {
 
+        }
+    }
 
 }
