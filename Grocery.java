@@ -56,9 +56,14 @@ public class Grocery{
         return true;
     }
 
-    public Product bestProduct(String productName, User u, double AverageCost) {
-        Product p = new Product("a", 1.0, "b", 1.0, false, false);
-        return p;
+    public Product bestProduct(String productName, User u, double averageCost) {
+        List<Product> products = search(productName);
+        Map<Double, Product> scores = new TreeMap<>();
+        for (Product p: products) {
+            scores.put(p.calculateScore(u, averageCost), p);
+        }
+        double bestScore = Collections.max(scores.keySet());
+        return scores.get(bestScore);
     }
 
     public double storeScore(List<String> groceryList, User u, List<Double> costs) {
