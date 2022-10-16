@@ -62,4 +62,31 @@ class GroceryTest {
 
         assertEquals(5.28, Walmart.storeScore(groceries, u, costs));
     }
+
+    @Test
+    void testBestProduct() {
+        Point p = new Point(10, 10);
+        Grocery Walmart = new Grocery("Walmart", p);
+        User u = new User("Isaac");
+        Product apple = new Product("apple", 1829.0, "plane", 3.90, true, false);
+        Product banana = new Product("banana", 1569.0, "train", .25, true, true);
+        Product fijiApple = new Product("fiji apple", 1281.0, "ship", 4.30,
+                false, false);
+        Product honeyCrispApple = new Product("honey crisp apple", 89.0, "train", 2.95,
+                true, true);
+        Product greekYogurt = new Product("Chobani Greek Yogurt", 550.0, "ship",
+                4.30, false, false);
+        Product smoothYogurt = new Product("Yoplait Yogurt", 190.5, "train", 3.9,
+                true,false);
+        Walmart.addProduct(apple);
+        Walmart.addProduct(banana);
+        Walmart.addProduct(fijiApple);
+        Walmart.addProduct(greekYogurt);
+        Walmart.addProduct(smoothYogurt);
+        Walmart.addProduct(honeyCrispApple);
+
+
+        Product bestProduct = Walmart.bestProduct("apple", u, 3.7);
+        System.out.println(bestProduct.toString());
+    }
 }
