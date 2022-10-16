@@ -97,13 +97,13 @@ public class Product{
 
     @Override
     public String toString() {
-        String isOrganic = "produced organically";
+
+        String isOrganic = "organic";
         String isCarbon = "carbon-intensive";
-        if (!organic) isOrganic = "not produced organically";
+        if (!organic) isOrganic = "not organic";
         if (!carbon) isCarbon = "not carbon-intensive";
 
-        return name + " traveled " + distance + " miles to get to the store and was shipped by " +
-                shippingMethod + "." + " It was " + isOrganic + " and it's production was " +
-                isCarbon + "." + " It costs " + price + ".";
+        return name + ", " + distance + ", " + shippingMethod + ", " + isOrganic + ", " +
+                isCarbon + ", " + price + ".";
     }
 }
