@@ -1,5 +1,3 @@
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 import java.io.*;
 
@@ -35,7 +33,7 @@ public class Main {
         ArrayList<Grocery> fiveBest = new ArrayList<>();
         int i = 0;
         for(Grocery a : groceryTreeMap.values()){
-            if(i>=2) break;
+            if(i>=3) break;
             fiveBest.add(a);
             i++;
         }
@@ -82,6 +80,7 @@ public class Main {
         for(String a : products){
             costs.add((double)averageCost.get(findCategory(a, averageCost)));
         }
+        System.out.println(costs);
         for(Grocery store: storeList){
             Grocery returnedStore = new Grocery(store.getName(), store.getLoc());
             int i = 0;
