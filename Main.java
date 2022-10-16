@@ -126,8 +126,8 @@ public class Main {
         }
     }
 
-    public static String findCategory(String name, TreeMap averageCost){
-        for(String a : name.split(" ", Integer.MAX_VALUE)){
+    public static String findCategory(String name, TreeMap<String, Double> averageCost){
+        for(String a : name.split(" ")){
             if (averageCost.containsKey(a)) return a;
         }
         return "";
