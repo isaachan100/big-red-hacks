@@ -51,10 +51,10 @@ class GroceryTest {
         Walmart.addProduct(greekYogurt);
         Walmart.addProduct(smoothYogurt);
         Walmart.addProduct(honeyCrispApple);
-        List<String> groceries = new ArrayList<>();
-        groceries.add("apple");
-        groceries.add("banana");
-        groceries.add("yogurt");
+        String [] groceries = new String [3];
+        groceries[0] = "apple";
+        groceries[1] = "banana";
+        groceries[2] = "yogurt";
         List<Double> costs = new ArrayList<>();
         costs.add(3.80);
         costs.add(1.25);

@@ -11,7 +11,7 @@ public class Main {
         storeList.add(readStoreData("Target Demo Data.csv"));
         User u = new User("Ethan");
         ArrayList<Grocery> closestStores = bestStores(storeList, u);
-        Map<String, Double> averageCost = new TreeMap<>();
+        TreeMap<String, Double> averageCost = new TreeMap<>();
         averageCost.put("apple", 1.29);
         averageCost.put("yogurt", 2.33);
         averageCost.put("cereal", 3.27);
@@ -78,14 +78,20 @@ public class Main {
 
     public static void printSuggestions(ArrayList<Grocery> storeList, String [] products, User u, TreeMap averageCost){
         TreeMap<Double, Grocery> ranking= new TreeMap<>();
+        ArrayList<Double> costs = new ArrayList<>();
+        for(String a : products){
+            costs.add((double)averageCost.get(findCategory(a, averageCost)));
+        }
         for(Grocery store: storeList){
             Grocery returnedStore = new Grocery(store.getName(), store.getLoc());
+            int i = 0;
             for(String product: products){
-                returnedStore.addProduct(store.bestProduct(product, u, (double)averageCost.get(findCategory(product, averageCost))));
+                returnedStore.addProduct(store.bestProduct(product, u, costs.get(i)));
+                i++;
             }
-            ranking.put(store.storeScore(), );
+            ranking.put(store.storeScore(products, u, costs), returnedStore);
         }
-        for (Map.Entry<K, V> entry : myMap.entrySet()) {
+        for (Map.Entry<Double, Grocery> entry : ranking.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
         }
     }
