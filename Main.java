@@ -23,6 +23,7 @@ public class Main {
         printSuggestions(closestStores, args, u, averageCost);
         makeTransactions("Transactions Demo Data.csv", u, averageCost,
                 new Scanner(System.in), stores);
+        printSuggestions(closestStores, args, u, averageCost);
 
 
 
@@ -112,12 +113,14 @@ public class Main {
             }
             String line = br.readLine();
             while (line != null) {
-                String[] transaction = line.split(" ");
+                String[] transaction = line.split(",");
+                System.out.println(transaction[1]);
                 Grocery g = stores.get(transaction[1]);
                 List<Product> products = g.search(transaction[0]);
                 for (Product p : products) {
                     u.addTransaction(p, averageCost.get(transaction[2]));
                 }
+                line = br.readLine();
             }
         }
         catch (IOException e) {
