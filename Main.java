@@ -74,13 +74,12 @@ public class Main {
         return groceryTreeMap;
     }
 
-    public static void printSuggestions(ArrayList<Grocery> storeList, String [] products, User u, TreeMap averageCost){
+    public static void printSuggestions(ArrayList<Grocery> storeList, String [] products, User u, TreeMap<String, Double> averageCost){
         TreeMap<Double, Grocery> ranking= new TreeMap<>();
         ArrayList<Double> costs = new ArrayList<>();
         for(String a : products){
-            costs.add((double)averageCost.get(findCategory(a, averageCost)));
+            costs.add(averageCost.get(findCategory(a, averageCost)));
         }
-        System.out.println(costs);
         for(Grocery store: storeList){
             Grocery returnedStore = new Grocery(store.getName(), store.getLoc());
             int i = 0;
