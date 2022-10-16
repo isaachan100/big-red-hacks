@@ -11,7 +11,6 @@ class ProductTest {
         assertEquals(1829.0, apple.getDistance());
         assertEquals(0.5, apple.getShipping());
         assertEquals(3.91, apple.getPrice());
-        assertTrue(apple.getOrganic());
         assertFalse(apple.getCarbon());
         assertEquals("[1.22, 0.0, 4.71, 10.0]", apple.scores(3.80).toString());
         assertEquals(("apple traveled 1829.0 miles to get to the store and was shipped by plane. It"

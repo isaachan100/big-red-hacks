@@ -46,8 +46,12 @@ public class Product{
     public double getPrice() {
         return price;
     }
-    public boolean getOrganic() {
-        return organic;
+    public String getOrganic() {
+        if(organic){
+            return "Organic";
+        }else{
+            return  "Not Organic";
+        }
     }
     public boolean getCarbon() {
         return carbon;

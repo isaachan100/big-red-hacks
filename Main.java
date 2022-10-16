@@ -24,7 +24,6 @@ public class Main {
         makeTransactions("Transactions Demo Data.csv", u, averageCost,
                 new Scanner(System.in), stores);
         System.out.println();
-        System.out.println();
         printSuggestions(closestStores, args, u, averageCost);
 
 
@@ -93,7 +92,10 @@ public class Main {
             ranking.put(store.storeScore(products, u, costs), returnedStore);
         }
         for (Map.Entry<Double, Grocery> entry : ranking.entrySet()) {
-            System.out.println(entry.getValue().getName() + ": " + entry.getValue().getProducts());
+            System.out.println(entry.getValue().getName()+":");
+            for(Product a : entry.getValue().getProducts()){
+                System.out.println("\t"+a.getName()+" | "+a.getOrganic());
+            }
         }
     }
 
@@ -106,7 +108,7 @@ public class Main {
             averageCost, Scanner sc, Map<String, Grocery> stores) {
         try (Reader r = new FileReader(fileName); BufferedReader br = new BufferedReader(r)) {
             while (true) {
-                System.out.println("Make transactions: ");
+                System.out.println("\nMake transactions: ");
                 String input = sc.nextLine().trim();
                 String [] words = input.split(" ");
                 if (words.length > 0) {
@@ -116,11 +118,12 @@ public class Main {
             String line = br.readLine();
             while (line != null) {
                 String[] transaction = line.split(",");
-                System.out.println("Bought: " + transaction[0] + " from " + transaction[1]);
+                // System.out.println("Bought: " + transaction[0] + " from " + transaction[1]);
                 Grocery g = stores.get(transaction[1]);
                 List<Product> products = g.search(transaction[0]);
                 for (Product p : products) {
                     u.addTransaction(p, averageCost.get(transaction[2]));
+                    System.out.println("Bought: " + p.getName() + " from " + transaction[1] +" | "+ p.getOrganic());
                 }
                 line = br.readLine();
             }
