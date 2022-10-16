@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.nio.file.DirectoryIteratorException;
 import java.util.*;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +19,20 @@ public class Main {
             i++;
         }
         return fiveBest;
+    }
+
+    public Grocery readStoreData(String name) {
+
+        try(Reader r = new FileReader(name); BufferedReader br = new BufferedReader(r)) {
+            String line = br.readLine();
+            while (line != null) {
+
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File " + name + " not found");
+        } catch (IOException e) {
+            System.err.println("Error reading from file " + name);
+        }
     }
 
     public TreeMap<Double, Grocery> closeStores(ArrayList<Grocery> storeList, User u){
