@@ -1,16 +1,16 @@
 Target,-71.06,42.36
-Empire Apple,19.4,Truck,1.91,TRUE,TRUE
-Golden Delicious,192.8,Train,2.1,TRUE,TRUE
-Gala Apple,2034.5,Plane,2.2,TRUE,TRUE
-McIntosh Apple,1982.3,Plane,1.94,FALSE,TRUE
-Pink Lady Apple,2493.5,Truck,1.95,TRUE,FALSE
+Empire Apple,19.4,Truck,1.91,FALSE,TRUE
+Golden Delicious,19.8,Train,2.1,TRUE,TRUE
+Gala Apple,20.5,Plane,2.2,FALSE,TRUE
+McIntosh Apple,19.3,Plane,1.94,FALSE,TRUE
+Pink Lady Apple,24.5,Truck,1.95,FALSE,TRUE
 Icelandic Provision Skyr Vanilla Yogurt,1856.7,Ship,2.39,TRUE,FALSE
-Stonyfield Farm Yogurt,1823.6,Ship,1.98,TRUE,TRUE
+Stonyfield Farm Yogurt,1823.6,Ship,1.98,FALSE,TRUE
 Chobani Blueberry Yogurt,294.5,Truck,1.35,TRUE,TRUE
 Yoplait Whips Chocolate Yogurt,1024.9,Train,1.99,FALSE,FALSE
-Cheerios Cereal,1934.5,Truck,2.98,FALSE,TRUE
-KIND Granola Cereal,293.45,Truck,4.15,TRUE,FALSE
-Cinnamon Toast Crunch Cereal,1876.5,Plane,1.99,FALSE,FALSE
+Cheerios Cereal,100.9,Train,2.98,FALSE,TRUE
+KIND Granola Cereal,1928.45,Plane,4.15,TRUE,FALSE
+Cinnamon Toast Crunch Cereal,1876.5,Truck,1.99,FALSE,FALSE
 Frosted Flakes Cereal,1928.4,Plane,1.79,FALSE,FALSE
 Cocoa Puffs Cereal,1938.4,Ship,1.99,FALSE,FALSE
 Friendly's Mint Chocolate Chip Ice Cream,1938.5,Plane,3.9,FALSE,FALSE
