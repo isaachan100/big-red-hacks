@@ -1,3 +1,5 @@
+import com.sun.source.tree.Tree;
+
 import java.util.*;
 import java.io.*;
 
@@ -20,7 +22,7 @@ public class Main {
         stores.put("Target", storeList.get(2));
         //command line input for array of products to search
 
-        printSuggestions(closestStores, args, u);
+        printSuggestions(closestStores, args, u, averageCost);
         makeTransactions("Transactions Demo Data.csv", u, averageCost,
                 new Scanner(System.in), stores);
 
@@ -74,11 +76,14 @@ public class Main {
         return groceryTreeMap;
     }
 
-    public static void printSuggestions(ArrayList<Grocery> storeList, String [] products, User u){
+    public static void printSuggestions(ArrayList<Grocery> storeList, String [] products, User u, TreeMap averageCost){
+        TreeMap<Double, Grocery> ranking= new TreeMap<>();
         for(Grocery store: storeList){
+            Grocery returnedStore = new Grocery(store.getName(), store.getLoc());
             for(String product: products){
-                store.search(product);
+                returnedStore.addProduct(store.bestProduct(product, u, (double)averageCost.get(findCategory(product, averageCost))));
             }
+            ranking.put(store.storeScore(), );
         }
         for (Map.Entry<K, V> entry : myMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
@@ -114,6 +119,13 @@ public class Main {
         catch (IOException e) {
 
         }
+    }
+
+    public static String findCategory(String name, TreeMap averageCost){
+        for(String a : name.split(" ", Integer.MAX_VALUE)){
+            if (averageCost.containsKey(a)) return a;
+        }
+        return "";
     }
 
 }
