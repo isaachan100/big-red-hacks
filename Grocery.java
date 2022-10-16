@@ -66,10 +66,10 @@ public class Grocery{
         return scores.get(bestScore);
     }
 
-    public double storeScore(List<String> groceryList, User u, List<Double> costs) {
+    public double storeScore(String[] groceryList, User u, List<Double> costs) {
         double totalAverage = 0;
-        for (int i = 0; i < groceryList.size(); i++) {
-            String product = groceryList.get(i);
+        for (int i = 0; i < groceryList.length; i++) {
+            String product = groceryList[i];
             double weightedAverage = 0;
             List<Product> products = search(product);
             List<Double> sortedProducts = new ArrayList<>();
@@ -84,6 +84,6 @@ public class Grocery{
             weightedAverage = Math.round(weightedAverage * 100.0)/100.0;
             totalAverage += weightedAverage;
         }
-        return totalAverage / groceryList.size();
+        return totalAverage / groceryList.length;
     }
 }
