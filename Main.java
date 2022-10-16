@@ -6,6 +6,9 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Grocery> storeList = new ArrayList<>();
+        storeList.add(readStoreData("Walmart Demo Data.csv"));
+        storeList.add(readStoreData("Costco Demo Data.csv"));
+        storeList.add(readStoreData("Target Demo Data.csv"));
 
     }
 
@@ -21,18 +24,28 @@ public class Main {
         return fiveBest;
     }
 
-    public Grocery readStoreData(String name) {
-
+    public static Grocery readStoreData(String name) {
         try(Reader r = new FileReader(name); BufferedReader br = new BufferedReader(r)) {
             String line = br.readLine();
+            ArrayList<Grocery> storeList = new ArrayList<>();
+            String[] a = line.split(",", Integer.MAX_VALUE);
+            Point b = new Point(Double.parseDouble(a[1]), Double.parseDouble(a[2]));
+            Grocery store = new Grocery(a[0], b);
+            line = br.readLine();
             while (line != null) {
-
+                a = line.split(",", Integer.MAX_VALUE);
+                Product product = new Product(a[0], Double.parseDouble(a[1]), a[2], Double.parseDouble(a[3]),
+                        Boolean.parseBoolean(a[4]), Boolean.parseBoolean(a[5]));
+                store.addProduct(product);
+                line = br.readLine();
             }
+            return store;
         } catch (FileNotFoundException e) {
             System.err.println("File " + name + " not found");
         } catch (IOException e) {
             System.err.println("Error reading from file " + name);
         }
+        return null;
     }
 
     public TreeMap<Double, Grocery> closeStores(ArrayList<Grocery> storeList, User u){
@@ -50,9 +63,7 @@ public class Main {
 
 
 
-    //gather closest stores -> ArrayList<Grocery>
     //gather relevant products (call to Grocery) -> ArrayList<Product> might not even need this one
-    //come up with best store to go to -> Grocery
     // accept list of search and send to each grocer (for each loop) ->
     //adds confirmed purchase to each user class -> void
     // creates a tree map to sort products by score -> treemap
