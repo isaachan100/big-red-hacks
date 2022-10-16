@@ -11,6 +11,8 @@ public class Product{
     // true if organic, false if not
     private boolean organic;
 
+    private String shippingMethod;
+
     // carbon-intensive growth methods, true if carbon-intensive false if not
     private boolean carbon;
     public Product(String n, double d, String s, double p, boolean o, boolean c) {
@@ -23,6 +25,7 @@ public class Product{
         price = p;
         organic = o;
         carbon = c;
+        shippingMethod = s;
     }
     private double shippingScore() {
         double trans = (shipping * distance) / 750;
@@ -90,5 +93,17 @@ public class Product{
             score += weights.get(i) * productScores.get(i);
         }
         return Math.round(score * 100.0)/100.0;
+    }
+
+    @Override
+    public String toString() {
+        String isOrganic = "produced organically";
+        String isCarbon = "carbon-intensive";
+        if (!organic) isOrganic = "not produced organically";
+        if (!carbon) isCarbon = "not carbon-intensive";
+
+        return name + " traveled " + distance + " miles to get to the store and was shipped by " +
+                shippingMethod + "." + " It was " + isOrganic + " and it's production was " +
+                isCarbon + "." + " It costs " + price + ".";
     }
 }
