@@ -1,4 +1,4 @@
-import java.util.Comparator;
+import java.util.*;
 
 public class Point{
     private double x;
@@ -36,4 +36,5 @@ public class Point{
     public String toString() {
         return "("+x+","+y+")";
     }
+
 }

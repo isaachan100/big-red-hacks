@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.nio.file.DirectoryIteratorException;
 import java.util.*;
 
 public class Main {
@@ -6,12 +8,27 @@ public class Main {
 
     }
 
-    public Grocery bestStore(){
-        return null;
+    public ArrayList<Grocery> bestStores(ArrayList<Grocery> storeList, User u){
+        TreeMap<Double, Grocery> groceryTreeMap = closeStores(storeList, u);
+        ArrayList<Grocery> fiveBest = new ArrayList<>();
+        int i = 0;
+        for(Grocery a : groceryTreeMap.values()){
+            if(i>=5) break;
+            fiveBest.add(a);
+            i++;
+        }
+        return fiveBest;
     }
 
-    public ArrayList<Grocery> closeStores(){
-        return null;
+    public TreeMap<Double, Grocery> closeStores(ArrayList<Grocery> storeList, User u){
+        TreeMap<Double, Grocery> groceryTreeMap = new TreeMap<>();
+        double x = u.getLoc().getLat();
+        double y = u.getLoc().getLon();
+        for(Grocery b : storeList){
+            double dist = Math.pow(b.getLoc().getLat()-x,2)+Math.pow(b.getLoc().getLon()-y, 2);
+            groceryTreeMap.put(Math.sqrt(dist), b);
+        }
+        return groceryTreeMap;
     }
 
 
